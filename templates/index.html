@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Translator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Universal Translator</h1>
+            <p>Translate text or speech between multiple languages</p>
+        </header>
+        
+        <div class="translator-box">
+            <div class="language-selector">
+                <select id="sourceLanguage">
+                    {% for code, name in languages.items() %}
+                        <option value="{{ code }}" {% if code == 'en' %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+                
+                <button id="swapLanguages" class="icon-btn">⇄</button>
+                
+                <select id="targetLanguage">
+                    {% for code, name in languages.items() %}
+                        <option value="{{ code }}" {% if code == 'es' %}selected{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <textarea id="sourceText" placeholder="Type or speak your text here..."></textarea>
+            
+            <div class="action-buttons">
+                <button id="translateBtn" class="btn primary">Translate</button>
+                <button id="listenBtn" class="btn success">Listen</button>
+                <button id="recordBtn" class="btn danger">Record</button>
+            </div>
+            
+            <div id="resultContainer" class="result-box hidden">
+                <h3>Translation Result</h3>
+                <div id="translatedText" class="translation-text"></div>
+                <div id="pronunciation" class="pronunciation"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
